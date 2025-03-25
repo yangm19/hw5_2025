@@ -1,0 +1,172 @@
+/* step 1
+logo animation for when the page is loaded */
+#logo {
+    animation: growAndFade 5s ease-out forwards;
+}
+
+@keyframes growAndFade {
+    0% {
+        width: 25px;
+        opacity: 0;
+    }
+    100% {
+        width: 475px;
+        opacity: 1;
+    }
+}
+/* step 2
+Use Poppins (Google font) for body with serif as backup. Add background image w/ background color. */
+body {
+    font-family: "Poppins", serif;
+    background-image: url("../images/concrete_seamless.png");
+    background-color: #f1f1f1;
+}
+/* step 3
+Header tag (all instances) uses flex. */
+header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/* step 4
+nav_links class uses flex. */
+.nav_links {
+    display: flex;
+    flex-direction: column;
+}
+/* step 5
+style links to have the same color even after visiting */
+.nav_item a {
+    color: inherit;
+    text-decoration: none;
+}
+.nav_item a:visited {
+    color: inherit;
+}
+
+ /* step 6
+style ONLY header elements that are direct children of a card class.
+*/
+.card > header {
+    background: #288088;
+    border: solid 2px #45ADAD;
+    padding: 20px 0;
+    border-radius: 50px 50px 0 0;
+}
+.card {
+    border-radius: 50px 50px 0 0;
+}
+/* step 7
+card class uses flex to have initial size of 450px */
+.card {
+    flex-basis: 450px;
+}
+/* step 8
+pricing class uses flex and the cards should be centered both horizontally and vertically */
+.pricing {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+/* step 9
+Style the images in the gallery class. */
+.gallery img {
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+/* step 10
+Gallery class uses flex to center and wrap items */
+.gallery {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+/* screen size > 900px */
+@media screen and (min-width: 900px){
+    /* step 11
+    header tag (all instances) and the nav_links class use flex-properties so that the logo is far to the left and the links are far right. */
+    header {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+    }
+    .nav_links {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
+    /* step 12
+    pricing and card class elements do not have the same height, but do have the same width. */
+    .pricing {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+    }
+    .card {
+        flex: 0 1 275px;
+    }
+    /* step 13
+    first header (the one not inside main) remains visible at the top of the screen even as we scroll down. It is always visible. */
+    header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+}
+/* prefers reduced motion */
+/* step 14
+The logo should appear but not be animated if prefers-reduced-motion is selected. */
+@media (prefers-reduced-motion) {
+    #logo {
+        animation: none;
+    }
+}
+
+/* printed in portrait mode */
+@media print and (orientation: portrait) {
+    /* step 15-16
+    Change font to Arial with Helvetica fallback
+    remove background image */
+    body {
+        font-family: Arial, Helvetica;
+        background-image: none;
+    }
+
+    /* step 18
+    Pricing Class (Align Elements to the Bottom) */
+    .pricing {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        flex-wrap: wrap;
+    }
+
+    /* step 19
+    Card Elements Styling */
+    .card {
+        border: solid 2px #45ADDD;
+        flex-basis: 325px;
+        margin: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    /* step 20
+    Hide Gallery for Print */
+    .gallery {
+        display: none;
+    }
+
+    /* step 21
+    Add Thumbs Up Entity Without list-style-type */
+    .nav_item a::before {
+        content: "\1F44D";
+        margin-right: 5px;
+    }
+}
